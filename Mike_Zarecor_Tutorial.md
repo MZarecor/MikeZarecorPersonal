@@ -283,8 +283,24 @@ print(X)
 6. You have a pipe with a radius of 0.2 m with water flowing in it at 2 m<sup>3</sup>/s. You want to see how the Reynolds Number changes as viscosity changes due to a change in temperature from 0 to 200<sup>o</sup>C. Create a plot of Reynolds Number against Temperature in Kelvin to show a relationship. Make sure your plot has a title, labeled axes, and axes grid. You can use functions from `physchem` like `pc.re_pipe` and `pc.viscosity_kinematic`. *(Hint: Make an array of temperatures to input into the `pc.viscosity_kinematic` function)*. Make sure to save you plot to your images folder in your personal repository, and display it below using `plt.show()` and a relative file path to the image.
 
 ```python
-T = np.array(0,200,10)
+T=np.array([273,283,293,303,313,323,333,343,353,363,373,383,393,403,413,423,433,443,453,463,473])*u.K
+D = .4*u.m
+Q = 2*(u.m**3/u.s)
+visc = pc.viscosity_kinematic(T)
+reynolds = pc.re_pipe(Q,D,visc)
+
+plt.plot(T,reynolds)
+plt.xlabel('Temperature (k)')
+plt.ylabel('Reynolds Number')
+plt.title('Reynolds Number vs Temperature')
+plt.minorticks_on()
+plt.grid(which = 'major')
+plt.legend(loc = 'lower right', ncol = 1)
+plt.show()
+plt.savefig('../MikeZarecorPersonal/Images/ReynoldsPlot.png')
 ```
+
+![ReynoldsPlot](/Images/ReynoldsPlot.png)
 
 # Teletype Basics
 In this section you and your team can practice using Teletype together.
@@ -297,8 +313,6 @@ In this section you and your team can practice using Teletype together.
 
 
 2. Have you other team members create a portal for you to join. In their Markdown file, write them something encouraging, and sign your name.
-
-<!--- Fill you answer here. --->
 
 
 # GitHub Basics
